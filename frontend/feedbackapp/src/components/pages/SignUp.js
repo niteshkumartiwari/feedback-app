@@ -6,7 +6,7 @@ import "./SignUp.css";
 
 class SignUp extends Component {
   render() {
-    if (this.props.authenticated) {
+    if (this.props.isAuthenticated) {
       return (
         <Redirect
           to={{

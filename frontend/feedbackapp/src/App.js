@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import "./App.css";
 import { ACCESS_TOKEN } from "./components/constants";
-import Navbar from "./components/Navbar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 
 import SignUp from "./components/pages/SignUp";
 import { getCurrentUser } from "./components/apis/User";
 import OAuth2RedirectHandler from "./components/oauth2/OAuth2RedirectHandler";
+import AppHeader from "./components/AppHeader";
+import LoadingIndicator from "./components/LoadingIndicator";
+import Profile from "./components/profile/Profile";
+import PrivateRoute from "./components/oauth2/PrivateRoute";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authenticated: false,
       currentUser: null,
+      isAuthenticated: false,
       loading: true,
     };
 
@@ -22,55 +25,91 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
+  updateUser(user) {
+    this.setState({
+      currentUser: user,
+    });
+  }
+
+  updateAuth(auth) {
+    this.setState({
+      isAuthenticated: auth,
+    });
+  }
+
+  updateLoad(load) {
+    this.setState({
+      loading: load,
+    });
+  }
+
   loadCurrentlyLoggedInUser() {
     getCurrentUser()
-      .then((response) => {
-        this.setState({
-          currentUser: response,
-          authenticated: true,
-          loading: false,
-        });
+      .then((user) => {
+        this.updateUser(user);
+        this.updateAuth(true);
+        this.updateLoad(false);
       })
       .catch((error) => {
-        this.setState({
-          loading: false,
-        });
+        this.updateLoad(false);
       });
   }
 
   handleLogout() {
     localStorage.removeItem(ACCESS_TOKEN);
     this.setState({
-      authenticated: false,
+      isAuthenticated: false,
       currentUser: null,
     });
+  }
+
+  UNSAFE_componentWillReceiveProps() {
+    this.loadCurrentlyLoggedInUser();
   }
 
   componentDidMount() {
     this.loadCurrentlyLoggedInUser();
   }
 
+  UNSAFE_componentWillUnmount() {
+    console.log("App component Unmounted");
+  }
+
   render() {
+    if (this.state.loading) {
+      return <LoadingIndicator />;
+    }
+
     return (
-      <>
-        <Router>
-          <Navbar
-            authenticated={this.state.authenticated}
+      <div className="app">
+        <div className="app-top-box">
+          <AppHeader
+            isAuthenticated={this.state.isAuthenticated}
             onLogout={this.handleLogout}
-            {...this.props}
           />
+        </div>
+        <div className="app-body">
           <Switch>
             <Route path="/" exact component={Home} />
+            <PrivateRoute
+              path="/profile"
+              isAuthenticated={this.state.isAuthenticated}
+              currentUser={this.state.currentUser}
+              component={Profile}
+            ></PrivateRoute>
             <Route
               path="/sign-up"
               render={(props) => (
-                <SignUp authenticated={this.state.authenticated} {...props} />
+                <SignUp
+                  isAuthenticated={this.state.isAuthenticated}
+                  {...props}
+                />
               )}
             />
             <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
           </Switch>
-        </Router>
-      </>
+        </div>
+      </div>
     );
   }
 }
