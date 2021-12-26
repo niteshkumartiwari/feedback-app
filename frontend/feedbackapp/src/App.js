@@ -7,6 +7,7 @@ import Home from "./components/pages/Home";
 
 import SignUp from "./components/pages/SignUp";
 import { getCurrentUser } from "./components/apis/User";
+import OAuth2RedirectHandler from "./components/oauth2/OAuth2RedirectHandler";
 
 class App extends Component {
   constructor(props) {
@@ -53,10 +54,20 @@ class App extends Component {
     return (
       <>
         <Router>
-          <Navbar />
+          <Navbar
+            authenticated={this.state.authenticated}
+            onLogout={this.handleLogout}
+            {...this.props}
+          />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/sign-up" component={SignUp} />
+            <Route
+              path="/sign-up"
+              render={(props) => (
+                <SignUp authenticated={this.state.authenticated} {...props} />
+              )}
+            />
+            <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
           </Switch>
         </Router>
       </>

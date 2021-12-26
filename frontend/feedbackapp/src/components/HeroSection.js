@@ -1,7 +1,8 @@
 import React from "react";
 import "../App.css";
-import { Button } from "./Button";
 import "./HeroSection.css";
+import { Link } from "react-router-dom";
+import { Button } from "./Button";
 
 function HeroSection() {
   return (
@@ -9,6 +10,7 @@ function HeroSection() {
       <video src="/videos/cover.mp4" autoPlay loop muted />
       <h1>Grow Personally</h1>
       <p>Lets help each other grow!</p>
+      <br/><Button buttonStyle="btn--outline"> SIGN UP </Button>
     </div>
   );
 }

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Button } from "./Button";
 import "./Navbar.css";
 
-function Navbar() {
+
+function Navbar(props) {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -31,41 +32,41 @@ function Navbar() {
           <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
             Feedloo<i className="fas fa-bullhorn"></i>
           </Link>
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} />
-          </div>
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/profile"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Profile
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/polls" className="nav-links" onClick={closeMobileMenu}>
-                Active Polls
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                to="/sign-up"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                Sign Up
-              </Link>
-            </li>
-          </ul>
-          {button && <Button buttonStyle="btn--outline"> SIGN UP </Button>}
+          {props.authenticated
+            ? (<div className="menu-icon" onClick={handleClick}>
+                <i className={click ? "fas fa-times" : "fas fa-bars"} />
+              </div>)(
+                <ul className={click ? "nav-menu active" : "nav-menu"}>
+                  <li className="nav-item">
+                    <Link
+                      to="/"
+                      className="nav-links"
+                      onClick={closeMobileMenu}
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      to="/profile"
+                      className="nav-links"
+                      onClick={closeMobileMenu}
+                    >
+                      Profile
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      to="/polls"
+                      className="nav-links"
+                      onClick={closeMobileMenu}
+                    >
+                      Active Polls
+                    </Link>
+                  </li>
+                </ul>
+              )
+            : ""}
         </div>
       </nav>
     </>

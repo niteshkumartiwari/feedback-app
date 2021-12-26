@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1df39d91-edc8-4719-8f17-c25e14d15753" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__com_zaxxer_HikariCP_4_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__io_jsonwebtoken_jjwt_api_0_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__io_jsonwebtoken_jjwt_impl_0_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__io_jsonwebtoken_jjwt_jackson_0_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__jakarta_persistence_jakarta_persistence_api_2_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__jakarta_transaction_jakarta_transaction_api_1_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_apache_tomcat_tomcat_annotations_api_9_0_56.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_1_2_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_hibernate_hibernate_core_5_6_3_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_2_0_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_jboss_jandex_2_2_3_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_2_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_2_6_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_spring_aspects_5_3_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_spring_jdbc_5_3_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_spring_orm_5_3_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/config/AppProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/config/WebMvcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/exception/BadRequestException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/exception/OAuth2AuthenticationProcessingException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/model/AuthProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/CurrentUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/RestAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/TokenAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/TokenProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/UserPrincipal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/oauth2/CustomOAuth2UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/oauth2/HttpCookieOAuth2AuthorizationRequestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/oauth2/OAuth2AuthenticationFailureHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/oauth2/OAuth2AuthenticationSuccessHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/oauth2/user/GoogleOAuth2UserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/oauth2/user/OAuth2UserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/oauth2/user/OAuth2UserInfoFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/util/CookieUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_13_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_13_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_13_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_9_0_56.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_6_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_6_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_6_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_6_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_6_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_6_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/AppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/AppApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/app/src/main/java/com/feedloop/app/security/ApplicationSecurity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/app/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/app/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/feedbackapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/feedbackapp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/feedbackapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/feedbackapp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/feedbackapp/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/feedbackapp/src/App.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="22oAuqdjxT5U7ueyu7Kobe1tErf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend/app/app/pom.xml" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1df39d91-edc8-4719-8f17-c25e14d15753" name="Default Changelist" comment="" />
+      <created>1640493791760</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1640493791760</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1640494279330">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1640494279330" />
+  </component>
+</project>
