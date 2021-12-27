@@ -1,0 +1,22 @@
+.create_class {
+  display: flex;
+  padding: 12px 6px;
+  justify-content: center;
+  column-gap: 80px;
+  padding-top: 30px;
+}
+
+.create_form {
+  display: flex;
+}
+
+.create_poll {
+  display: flex;
+  flex-direction: row;
+}
+
+.create_text {
+  padding: 2px 6px;
+  padding-top: 6px;
+  text-transform: capitalize;
+}
