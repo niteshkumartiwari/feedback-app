@@ -11,6 +11,9 @@ import AppHeader from "./components/AppHeader";
 import LoadingIndicator from "./components/LoadingIndicator";
 import Profile from "./components/profile/Profile";
 import PrivateRoute from "./components/oauth2/PrivateRoute";
+import UserHome from "./components/pages/UserHome";
+import Centeredtabs from "./components/form/Centeredtabs";
+import QuestionForm from "./components/form/QuestionForm";
 
 class App extends Component {
   constructor(props) {
@@ -97,6 +100,16 @@ class App extends Component {
               currentUser={this.state.currentUser}
               component={Profile}
             ></PrivateRoute>
+            <PrivateRoute
+              path="/home"
+              isAuthenticated={this.state.isAuthenticated}
+              currentUser={this.state.currentUser}
+              component={UserHome}
+            ></PrivateRoute>
+            <Route path="/form">
+              <Centeredtabs />
+              <QuestionForm />
+            </Route>
             <Route
               path="/sign-up"
               render={(props) => (
