@@ -16,11 +16,12 @@ import java.util.List;
 @ToString
 
 @Document(collection = "Form")
-public class Form {
+public class Poll {
     @Id
     private String Id;
 
     @JsonProperty("client_id")
+    @NotNull
     private String clientId;
 
     @JsonIgnore
@@ -36,6 +37,5 @@ public class Form {
     private Boolean active;
 
     @NotNull
-    private List<Question> questions;
-
+    private Question question;
 }

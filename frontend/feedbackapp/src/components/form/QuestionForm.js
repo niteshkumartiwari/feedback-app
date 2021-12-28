@@ -57,7 +57,7 @@ import { actionTypes } from "../reducer";
 import { useParams } from "react-router";
 import axios from "axios";
 import { doHttpRequest } from "../apis/User";
-import { VIEW_FORM_URL } from "../constants";
+import { FILL_FORM_URL } from "../constants";
 import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Share from "../pages/Share";
@@ -155,7 +155,7 @@ function QuestionForm(props) {
     });
 
     if (response.id) {
-      setFormId(VIEW_FORM_URL + "/" + response.id);
+      setFormId(FILL_FORM_URL + "/" + response.id);
     }
 
     setSubmit(true);

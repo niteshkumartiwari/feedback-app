@@ -4,22 +4,16 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Button from "@material-ui/core/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import Switch from "@material-ui/core/Switch";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import CloseIcon from "@material-ui/icons/Close";
 import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
-import FilterNoneIcon from "@material-ui/icons/FilterNone";
 import ShortTextIcon from "@material-ui/icons/ShortText";
-import SubjectIcon from "@material-ui/icons/Subject";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { BsTrash } from "react-icons/bs";
-import { useParams } from "react-router";
+import { v4 as uuidv4 } from "uuid";
+import { doHttpRequest } from "../apis/User";
+import { FILL_POLL_URL } from "../constants";
 import "./css/Poll.css";
+import Share from "../pages/Share";
 
 function Poll() {
   //const [{}, dispatch] = useStateValue();
@@ -27,17 +21,16 @@ function Poll() {
   const [documentName, setDocName] = useState();
 
   const [documentDescription, setDocDesc] = useState();
+  const [IsSubmit, setSubmit] = useState(false);
+  const [formId, setFormId] = useState();
 
   const [questionType, setType] = useState("radio");
   const [questionRequired, setRequired] = useState("true");
-  let { id } = useParams();
+  let id = uuidv4();
 
-  console.log(id);
   useEffect(() => {
     var newQuestion = {
       questionText: "Poll-Question",
-      answer: false,
-      answerKey: "",
       questionType: "radio",
       options: [{ optionText: "Option 1" }],
       open: true,
@@ -45,35 +38,6 @@ function Poll() {
     };
 
     setQuestions([...questions, newQuestion]);
-  }, []);
-
-  useEffect(() => {
-    async function data_adding() {
-      var request = await axios.get(`http://localhost:9000/data/${id}`);
-      var question_data = request.data.questions;
-      console.log(question_data);
-      var doc_name = request.data.document_name;
-      var doc_descip = request.data.doc_desc;
-      console.log(doc_name + " " + doc_descip);
-      setDocName(doc_name);
-      setDocDesc(doc_descip);
-      setQuestions(question_data);
-      // dispatch({
-      //   type: actionTypes.SET_DOC_NAME,
-      //   doc_name: doc_name,
-      // });
-
-      // dispatch({
-      //   type: actionTypes.SET_DOC_DESC,
-      //   doc_desc: doc_descip,
-      // });
-      // dispatch({
-      //   type: actionTypes.SET_QUESTIONS,
-      //   questions: question_data,
-      // });
-    }
-
-    data_adding();
   }, []);
 
   function changeType(e) {
@@ -88,18 +52,20 @@ function Poll() {
     setType(questionType);
   }, [changeType]);
 
-  function commitToDB() {
-    console.log(questions);
-    // dispatch({
-    //   type: actionTypes.SET_QUESTIONS,
-    //   questions: questions,
-    // });
-
-    axios.post(`http://localhost:9000/add_questions/${id}`, {
+  async function commitToDB() {
+    const response = await doHttpRequest("/poll/create", "POST", {
+      client_id: id,
       document_name: documentName,
       doc_desc: documentDescription,
-      questions: questions,
+      active: true,
+      question: questions[0],
     });
+
+    if (response.id) {
+      setFormId(FILL_POLL_URL + "/" + response.id);
+    }
+
+    setSubmit(true);
   }
 
   function handleOptionValue(text, i, j) {
@@ -521,7 +487,19 @@ function Poll() {
     ));
   }
 
-  return (
+  return IsSubmit ? (
+    // <Redirect
+    //   to={{
+    //     pathname: "/share",
+    //     state: {
+    //       from: props.location,
+    //       doc_type: "form",
+    //       id: formId,
+    //     },
+    //   }}
+    // />
+    <Share link={formId} type="poll" />
+  ) : (
     <div>
       <div className="question_form">
         <br></br>
