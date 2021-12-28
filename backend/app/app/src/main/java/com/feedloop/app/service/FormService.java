@@ -6,6 +6,8 @@ import com.feedloop.app.repository.FormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FormService {
     @Autowired
@@ -18,5 +20,9 @@ public class FormService {
 
         formRepository.save(form);
         return form.getId();
+    }
+
+    public List<Form> getByCreator(String userId){
+        return formRepository.findByCreatedBy(userId);
     }
 }

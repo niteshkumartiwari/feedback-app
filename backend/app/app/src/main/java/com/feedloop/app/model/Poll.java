@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @ToString
 
-@Document(collection = "Form")
+@Document(collection = "Poll")
 public class Poll {
     @Id
     private String Id;

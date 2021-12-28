@@ -6,6 +6,8 @@ import com.feedloop.app.repository.PollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PollService {
     @Autowired
@@ -18,5 +20,9 @@ public class PollService {
 
         pollRepository.save(poll);
         return poll.getId();
+    }
+
+    public List<Poll> getByCreator(String userId){
+        return pollRepository.findByCreatedBy(userId);
     }
 }
