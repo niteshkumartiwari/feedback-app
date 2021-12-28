@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Post from "./Post";
-import PostForm from "./PostForm"
+import PostForm from "./PostForm";
+import "./css/Feed.css";
+import { Divider } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Chip from "@mui/material/Chip";
 
 class Feed extends Component {
   constructor(props) {
@@ -27,6 +31,9 @@ class Feed extends Component {
     ));
     return (
       <div className="feed">
+        <Divider>
+          <Chip label="Recent Feeds" />
+        </Divider>
         {posts}
         <PostForm onSubmit={this.handleNewPost} />
       </div>

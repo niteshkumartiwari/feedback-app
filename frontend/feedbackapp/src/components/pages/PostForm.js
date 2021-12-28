@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./css/PostForm.css";
 
 class PostForm extends Component {
   constructor(props) {
@@ -14,14 +15,14 @@ class PostForm extends Component {
 
   render() {
     return (
-      <div className="post-form">
-        <form onSubmit={this.handleSubmit}>
+      <div className="post_form">
+        {/* <form onSubmit={this.handleSubmit}>
           <label>
             Content:
             <input type="text" ref={(input) => (this.content = input)} />
           </label>
           <button className="button">Submit</button>
-        </form>
+        </form> */}
       </div>
     );
   }
