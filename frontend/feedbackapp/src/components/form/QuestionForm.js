@@ -71,8 +71,6 @@ function QuestionForm() {
   useEffect(() => {
     var newQuestion = {
       questionText: "Question",
-      answer: false,
-      answerKey: "",
       questionType: "radio",
       options: [{ optionText: "Option 1" }],
       open: true,
@@ -143,9 +141,10 @@ function QuestionForm() {
     //   questions: questions,
     // });
 
-    axios.post(`http://localhost:9000/add_questions/${id}`, {
+    axios.post(`http://localhost:9000/create-form`, {
       document_name: documentName,
       doc_desc: documentDescription,
+      active: true,
       questions: questions,
     });
   }
@@ -540,7 +539,7 @@ function QuestionForm() {
                                 }
                                 label={
                                   <div>
-                                    <input
+                                    {/* <input
                                       type="text"
                                       className="text_input"
                                       style={{
@@ -548,7 +547,8 @@ function QuestionForm() {
                                         width: "60px",
                                       }}
                                       placeholder="Add other"
-                                    ></input>
+                                      disabled
+                                    ></input> */}
                                     <Button
                                       size="small"
                                       onClick={() => {
