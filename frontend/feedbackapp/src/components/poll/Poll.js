@@ -1,62 +1,27 @@
-import React, { useState, useEffect } from "react";
-import "./css/QuestionForm.css";
-
-import CropOriginalIcon from "@material-ui/icons/CropOriginal";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-
+import { IconButton, Typography } from "@material-ui/core";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import Button from "@material-ui/core/Button";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import { makeStyles } from "@material-ui/core/styles";
 import Select from "@material-ui/core/Select";
 import Switch from "@material-ui/core/Switch";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import RadioButtonCheckedIcon from "@material-ui/icons/RadioButtonChecked";
-import ShortTextIcon from "@material-ui/icons/ShortText";
-import ArrowDropDownCircleIcon from "@material-ui/icons/ArrowDropDownCircle";
-import SubjectIcon from "@material-ui/icons/Subject";
-import BackupIcon from "@material-ui/icons/Backup";
-import LinearScaleIcon from "@material-ui/icons/LinearScale";
-import EventIcon from "@material-ui/icons/Event";
-import ScheduleIcon from "@material-ui/icons/Schedule";
-import AppsIcon from "@material-ui/icons/Apps";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { BsTrash } from "react-icons/bs";
-import Checkbox from "@material-ui/core/Checkbox";
-import { IconButton } from "@material-ui/core";
-import FilterNoneIcon from "@material-ui/icons/FilterNone";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import OndemandVideoIcon from "@material-ui/icons/OndemandVideo";
-import TextFieldsIcon from "@material-ui/icons/TextFields";
-
-// ------------------------------------------
-
-import { Grid } from "@material-ui/core";
-import { BsFileText } from "react-icons/bs";
-import { Paper, Typography } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Button from "@material-ui/core/Button";
-import { FcRightUp } from "react-icons/fc";
+import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import CloseIcon from "@material-ui/icons/Close";
-import Radio from "@material-ui/core/Radio";
-
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import AccordionActions from "@material-ui/core/AccordionActions";
-import Divider from "@material-ui/core/Divider";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
 import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
-
-import SaveIcon from "@material-ui/icons/Save";
-
-import { useStateValue } from "../StateProvider";
-import { actionTypes } from "../reducer";
-import { useParams } from "react-router";
+import FilterNoneIcon from "@material-ui/icons/FilterNone";
+import ShortTextIcon from "@material-ui/icons/ShortText";
+import SubjectIcon from "@material-ui/icons/Subject";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { BsTrash } from "react-icons/bs";
+import { useParams } from "react-router";
+import "./css/Poll.css";
 
-function QuestionForm() {
+function Poll() {
   //const [{}, dispatch] = useStateValue();
   const [questions, setQuestions] = useState([]);
   const [documentName, setDocName] = useState();
@@ -70,7 +35,7 @@ function QuestionForm() {
   console.log(id);
   useEffect(() => {
     var newQuestion = {
-      questionText: "Question",
+      questionText: "Poll-Question",
       answer: false,
       answerKey: "",
       questionType: "radio",
@@ -85,7 +50,6 @@ function QuestionForm() {
   useEffect(() => {
     async function data_adding() {
       var request = await axios.get(`http://localhost:9000/data/${id}`);
-      console.log("sudeep");
       var question_data = request.data.questions;
       console.log(question_data);
       var doc_name = request.data.document_name;
@@ -124,18 +88,6 @@ function QuestionForm() {
     setType(questionType);
   }, [changeType]);
 
-  function saveQuestions() {
-    console.log("auto saving questions initiated");
-    var data = {
-      formId: "1256",
-      name: "My-new_file",
-      description: "first file",
-      questions: questions,
-    };
-
-    setQuestions(questions);
-  }
-
   function commitToDB() {
     console.log(questions);
     // dispatch({
@@ -148,50 +100,6 @@ function QuestionForm() {
       doc_desc: documentDescription,
       questions: questions,
     });
-  }
-
-  function addMoreQuestionField() {
-    expandCloseAll(); //I AM GOD
-
-    setQuestions((questions) => [
-      ...questions,
-      {
-        questionText: "Question",
-        questionType: "radio",
-        options: [{ optionText: "Option 1" }],
-        open: true,
-        required: false,
-      },
-    ]);
-  }
-
-  function addQuestionType(i, type) {
-    let qs = [...questions];
-    console.log(type);
-    qs[i].questionType = type;
-    qs[i].options = [];
-
-    if (type == "text") {
-      addOption(i, "Long Answer ...");
-    }
-
-    setQuestions(qs);
-  }
-
-  function copyQuestion(i) {
-    expandCloseAll();
-    let qs = [...questions];
-    var newQuestion = qs[i];
-
-    setQuestions([...questions, newQuestion]);
-  }
-
-  function deleteQuestion(i) {
-    let qs = [...questions];
-    if (questions.length > 1) {
-      qs.splice(i, 1);
-    }
-    setQuestions(qs);
   }
 
   function handleOptionValue(text, i, j) {
@@ -226,12 +134,6 @@ function QuestionForm() {
     result.splice(endIndex, 0, removed);
     return result;
   };
-
-  function showAsQuestion(i) {
-    let qs = [...questions];
-    qs[i].open = false;
-    setQuestions(qs);
-  }
 
   function addOption(i, placeholder) {
     var optionsOfQuestion = [...questions];
@@ -269,13 +171,6 @@ function QuestionForm() {
     setQuestions(Questions);
     console.log(qno + " " + points);
   }
-  function addAnswer(i) {
-    var answerOfQuestion = [...questions];
-
-    answerOfQuestion[i].answer = !answerOfQuestion[i].answer;
-
-    setQuestions(answerOfQuestion);
-  }
 
   function doneAnswer(i) {
     var answerOfQuestion = [...questions];
@@ -283,15 +178,6 @@ function QuestionForm() {
     answerOfQuestion[i].answer = !answerOfQuestion[i].answer;
 
     setQuestions(answerOfQuestion);
-  }
-
-  function requiredQuestion(i) {
-    var requiredQuestion = [...questions];
-
-    requiredQuestion[i].required = !requiredQuestion[i].required;
-
-    console.log(requiredQuestion[i].required + " " + i);
-    setQuestions(requiredQuestion);
   }
 
   function removeOption(i, j) {
@@ -428,50 +314,6 @@ function QuestionForm() {
                               }}
                             ></input>
                             {/* <CropOriginalIcon style={{ color: "#5f6368" }} /> */}
-
-                            <Select
-                              placeholder={"Select the Option"}
-                              className="select"
-                              style={{ color: "#5f6368", fontSize: "13px" }}
-                            >
-                              <MenuItem
-                                id="text"
-                                value="Text"
-                                onClick={() => {
-                                  addQuestionType(i, "text");
-                                }}
-                              >
-                                {" "}
-                                <SubjectIcon
-                                  style={{ marginRight: "10px" }}
-                                />{" "}
-                                Paragraph
-                              </MenuItem>
-                              <MenuItem
-                                id="checkbox"
-                                value="Checkbox"
-                                onClick={() => {
-                                  addQuestionType(i, "checkbox");
-                                }}
-                              >
-                                <CheckBoxIcon
-                                  style={{
-                                    marginRight: "10px",
-                                    color: "#70757a",
-                                  }}
-                                />{" "}
-                                Checkboxes
-                              </MenuItem>
-
-                              {/* <MenuItem value="40"> <BackupIcon style={{marginRight:"10px"}} /> File Upload</MenuItem>
-                                    <MenuItem value="50"> <LinearScaleIcon style={{marginRight:"10px"}} /> Linear Scale</MenuItem>
-                                    <MenuItem value="60"> <AppsIcon style={{marginRight:"10px"}} /> Tick-box grid</MenuItem>
- */}
-
-                              {/* <MenuItem value="aate"  onClick= {(e)=>{setType(e.target.id)}}> <EventIcon style={{marginRight:"10px"}} /> Date</MenuItem>
-                                    <MenuItem value="date"  onClick= {(e)=>{setType(e.target.id)}}> <ScheduleIcon style={{marginRight:"10px"}} /> Time</MenuItem>
- */}
-                            </Select>
                           </div>
 
                           {ques.options.map((op, j) => (
@@ -570,39 +412,6 @@ function QuestionForm() {
                           ) : (
                             ""
                           )}
-                          <div className="add_footer">
-                            <div className="add_question_bottom">
-                              <IconButton
-                                aria-label="Copy"
-                                onClick={() => {
-                                  copyQuestion(i);
-                                }}
-                              >
-                                <FilterNoneIcon />
-                              </IconButton>
-                              <IconButton
-                                aria-label="delete"
-                                onClick={() => {
-                                  deleteQuestion(i);
-                                }}
-                              >
-                                <BsTrash />
-                              </IconButton>
-                              <span
-                                style={{ color: "#5f6368", fontSize: "13px" }}
-                              >
-                                Required{" "}
-                              </span>{" "}
-                              <Switch
-                                name="checkedA"
-                                color="primary"
-                                checked={ques.required}
-                                onClick={() => {
-                                  requiredQuestion(i);
-                                }}
-                              />
-                            </div>
-                          </div>
                         </div>
                       </AccordionDetails>
                     ) : (
@@ -702,20 +511,6 @@ function QuestionForm() {
                         </div>
                       </AccordionDetails>
                     )}
-                    {!ques.answer ? (
-                      <div className="question_edit">
-                        <AddCircleOutlineIcon
-                          titleAccess="Add Question"
-                          onClick={addMoreQuestionField}
-                          className="edit"
-                        />
-                        {/* <OndemandVideoIcon className="edit" /> */}
-                        {/* <CropOriginalIcon className="edit" /> */}
-                        {/* <TextFieldsIcon className="edit" /> */}
-                      </div>
-                    ) : (
-                      ""
-                    )}
                   </div>
                 </Accordion>
               </div>
@@ -783,4 +578,4 @@ function QuestionForm() {
   );
 }
 
-export default QuestionForm;
+export default Poll;

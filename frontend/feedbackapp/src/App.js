@@ -14,6 +14,8 @@ import PrivateRoute from "./components/oauth2/PrivateRoute";
 import UserHome from "./components/pages/UserHome";
 import Centeredtabs from "./components/form/Centeredtabs";
 import QuestionForm from "./components/form/QuestionForm";
+import CenteredPolltabs from "./components/poll/CenteredPolltabs";
+import Poll from "./components/poll/Poll";
 
 class App extends Component {
   constructor(props) {
@@ -109,6 +111,10 @@ class App extends Component {
             <Route path="/form">
               <Centeredtabs />
               <QuestionForm />
+            </Route>
+            <Route path="/poll">
+              <CenteredPolltabs />
+              <Poll />
             </Route>
             <Route
               path="/sign-up"

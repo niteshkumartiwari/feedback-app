@@ -26,7 +26,7 @@ class UserHome extends Component {
           </div>
           <br></br>
           <div className="create_poll">
-            <Link to="/form">
+            <Link to="/poll">
               <Fab variant="extended" color="primary" aria-label="add">
                 <NavigationIcon sx={{ mr: 1 }} />
               </Fab>
@@ -35,7 +35,7 @@ class UserHome extends Component {
           </div>
         </div>
         <div className="feed">
-          <Feed/>
+          <Feed />
         </div>
       </div>
     );
