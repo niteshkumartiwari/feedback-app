@@ -31,7 +31,7 @@ class Feed extends Component {
     ));
     return (
       <div className="feed">
-        <Divider>
+        <Divider style={{ justifyContent: "center", paddingRight: "5%" }}>
           <Chip label="Recent Feeds" />
         </Divider>
         {posts}
