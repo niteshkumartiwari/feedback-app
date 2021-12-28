@@ -1,0 +1,14 @@
+.profile_feed {
+  padding-top: 10px;
+  /* padding-left: 0px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
