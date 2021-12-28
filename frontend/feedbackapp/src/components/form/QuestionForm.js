@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./css/QuestionForm.css";
+import { v4 as uuidv4 } from "uuid";
 
 import CropOriginalIcon from "@material-ui/icons/CropOriginal";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -55,19 +56,25 @@ import { useStateValue } from "../StateProvider";
 import { actionTypes } from "../reducer";
 import { useParams } from "react-router";
 import axios from "axios";
+import { doHttpRequest } from "../apis/User";
+import { VIEW_FORM_URL } from "../constants";
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Share from "../pages/Share";
 
-function QuestionForm() {
+function QuestionForm(props) {
   //const [{}, dispatch] = useStateValue();
   const [questions, setQuestions] = useState([]);
   const [documentName, setDocName] = useState();
+  const [IsSubmit, setSubmit] = useState(false);
+  const [formId, setFormId] = useState();
 
   const [documentDescription, setDocDesc] = useState();
 
   const [questionType, setType] = useState("radio");
   const [questionRequired, setRequired] = useState("true");
-  let { id } = useParams();
+  let id = uuidv4();
 
-  console.log(id);
   useEffect(() => {
     var newQuestion = {
       questionText: "Question",
@@ -80,35 +87,35 @@ function QuestionForm() {
     setQuestions([...questions, newQuestion]);
   }, []);
 
-  useEffect(() => {
-    async function data_adding() {
-      var request = await axios.get(`http://localhost:9000/data/${id}`);
-      console.log("sudeep");
-      var question_data = request.data.questions;
-      console.log(question_data);
-      var doc_name = request.data.document_name;
-      var doc_descip = request.data.doc_desc;
-      console.log(doc_name + " " + doc_descip);
-      setDocName(doc_name);
-      setDocDesc(doc_descip);
-      setQuestions(question_data);
-      // dispatch({
-      //   type: actionTypes.SET_DOC_NAME,
-      //   doc_name: doc_name,
-      // });
+  // useEffect(() => {
+  //   async function data_adding() {
+  //     var request = await axios.get(`http://localhost:9000/data/${id}`);
+  //     console.log("sudeep");
+  //     var question_data = request.data.questions;
+  //     console.log(question_data);
+  //     var doc_name = request.data.document_name;
+  //     var doc_descip = request.data.doc_desc;
+  //     console.log(doc_name + " " + doc_descip);
+  //     setDocName(doc_name);
+  //     setDocDesc(doc_descip);
+  //     setQuestions(question_data);
+  //     // dispatch({
+  //     //   type: actionTypes.SET_DOC_NAME,
+  //     //   doc_name: doc_name,
+  //     // });
 
-      // dispatch({
-      //   type: actionTypes.SET_DOC_DESC,
-      //   doc_desc: doc_descip,
-      // });
-      // dispatch({
-      //   type: actionTypes.SET_QUESTIONS,
-      //   questions: question_data,
-      // });
-    }
+  //     // dispatch({
+  //     //   type: actionTypes.SET_DOC_DESC,
+  //     //   doc_desc: doc_descip,
+  //     // });
+  //     // dispatch({
+  //     //   type: actionTypes.SET_QUESTIONS,
+  //     //   questions: question_data,
+  //     // });
+  //   }
 
-    data_adding();
-  }, []);
+  //   data_adding();
+  // }, []);
 
   function changeType(e) {
     // dispatch({
@@ -134,19 +141,24 @@ function QuestionForm() {
     setQuestions(questions);
   }
 
-  function commitToDB() {
-    console.log(questions);
+  async function commitToDB() {
     // dispatch({
     //   type: actionTypes.SET_QUESTIONS,
     //   questions: questions,
     // });
-
-    axios.post(`http://localhost:9000/create-form`, {
+    const response = await doHttpRequest("/form/create", "POST", {
+      client_id: id,
       document_name: documentName,
       doc_desc: documentDescription,
       active: true,
       questions: questions,
     });
+
+    if (response.id) {
+      setFormId(VIEW_FORM_URL + "/" + response.id);
+    }
+
+    setSubmit(true);
   }
 
   function addMoreQuestionField() {
@@ -726,7 +738,19 @@ function QuestionForm() {
     ));
   }
 
-  return (
+  return IsSubmit ? (
+    // <Redirect
+    //   to={{
+    //     pathname: "/share",
+    //     state: {
+    //       from: props.location,
+    //       doc_type: "form",
+    //       id: formId,
+    //     },
+    //   }}
+    // />
+    <Share link={formId} type="form" />
+  ) : (
     <div>
       <div className="question_form">
         <br></br>

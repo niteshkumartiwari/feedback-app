@@ -16,6 +16,7 @@ import Centeredtabs from "./components/form/Centeredtabs";
 import QuestionForm from "./components/form/QuestionForm";
 import CenteredPolltabs from "./components/poll/CenteredPolltabs";
 import Poll from "./components/poll/Poll";
+import Share from "./components/pages/Share";
 
 class App extends Component {
   constructor(props) {
@@ -108,6 +109,9 @@ class App extends Component {
               currentUser={this.state.currentUser}
               component={UserHome}
             ></PrivateRoute>
+            <Route path="/share">
+              <Share />
+            </Route>
             <Route path="/form">
               <Centeredtabs />
               <QuestionForm />

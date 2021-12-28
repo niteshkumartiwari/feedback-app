@@ -1,6 +1,6 @@
 import { API_BASE_URL, ACCESS_TOKEN } from "../constants";
 
-const request = async(options) => {
+const request = async (options) => {
   const headers = new Headers({
     "Content-Type": "application/json",
   });
@@ -33,5 +33,17 @@ export function getCurrentUser() {
   return request({
     url: API_BASE_URL + "/user/me",
     method: "GET",
+  });
+}
+
+export function doHttpRequest(urlVal, requestType, requestBody) {
+  if (!localStorage.getItem(ACCESS_TOKEN)) {
+    return Promise.reject("No access token set.");
+  }
+
+  return request({
+    url: API_BASE_URL + urlVal,
+    method: requestType,
+    body: JSON.stringify(requestBody),
   });
 }
