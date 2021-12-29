@@ -25,7 +25,7 @@ public class PollResource {
         poll.setCreatedBy(userPrincipal.getId());
 
         CreateFormResponse response= new CreateFormResponse();
-        response.setId(pollService.savePoll(poll));
+        response.setId(pollService.savePoll(userPrincipal, poll));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);

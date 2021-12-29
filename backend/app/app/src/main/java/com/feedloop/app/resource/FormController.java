@@ -24,7 +24,7 @@ public class FormController {
         form.setCreatedBy(userPrincipal.getId());
 
         CreateFormResponse response= new CreateFormResponse();
-        response.setId(formService.saveForm(form));
+        response.setId(formService.saveForm(userPrincipal, form));
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
