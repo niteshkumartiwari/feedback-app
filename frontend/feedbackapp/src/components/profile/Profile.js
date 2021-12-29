@@ -5,11 +5,41 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import ProfileFeed from "./ProfileFeed";
 
+import { doHttpRequest } from "../apis/User";
+import { GET_USER_FORMS, GET_USER_POLLS } from "../constants";
+
 class Profile extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      forms: [],
+      polls: [],
+      isUpdated: "false",
+    };
+
+    this.getForms = this.getForms.bind(this);
+    this.getPolls = this.getPolls.bind(this);
   }
+
+  componentDidMount() {
+    console.log("Component Did mount- Profile");
+    this.getForms();
+    this.getPolls();
+  }
+
+  async getForms() {
+    const response = await doHttpRequest(GET_USER_FORMS, "GET", {});
+    this.setState({ forms: response.forms });
+  }
+
+  async getPolls() {
+    const response = await doHttpRequest(GET_USER_POLLS, "GET", {});
+    this.setState({ polls: response.polls, isUpdated: true });
+  }
+
   render() {
+    console.log("rendering - Profile");
     return (
       <div className="profile-container">
         <div className="container">
@@ -46,7 +76,7 @@ class Profile extends Component {
             </Divider>
           </div>
           <div className="profile_feed">
-            <ProfileFeed />
+            <ProfileFeed forms={this.state.forms} polls={this.state.polls} />
           </div>
         </div>
       </div>

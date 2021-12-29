@@ -41,6 +41,13 @@ export function doHttpRequest(urlVal, requestType, requestBody) {
     return Promise.reject("No access token set.");
   }
 
+  if (requestType === "GET") {
+    return request({
+      url: API_BASE_URL + urlVal,
+      method: requestType,
+    });
+  }
+
   return request({
     url: API_BASE_URL + urlVal,
     method: requestType,
