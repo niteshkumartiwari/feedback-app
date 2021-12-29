@@ -9,10 +9,7 @@ import com.feedloop.app.service.PollService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/poll")
@@ -29,5 +26,14 @@ public class PollResource {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
+    }
+
+    @GetMapping("/fill/{id}")
+    private ResponseEntity<Poll> getPollById(@PathVariable String id){
+        Poll poll= pollService.getPollById(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(poll);
     }
 }

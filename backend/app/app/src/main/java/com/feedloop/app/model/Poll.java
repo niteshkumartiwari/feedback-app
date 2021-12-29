@@ -22,7 +22,7 @@ import java.util.List;
 @Document(collection = "Poll")
 public class Poll {
     @Id
-    private String Id;
+    private String id;
 
     @JsonProperty("client_id")
     @NotNull
