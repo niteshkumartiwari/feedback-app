@@ -13,12 +13,7 @@ class ProfileFeed extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    console.log("Component Did mount- ProfileFeed");
-  }
-
   render() {
-    console.log("rendering - ProfileFeed");
     const Item = styled(Paper)(({ theme }) => ({
       ...theme.typography.body2,
       padding: theme.spacing(1),

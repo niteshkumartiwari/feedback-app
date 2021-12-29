@@ -17,6 +17,7 @@ import QuestionForm from "./components/form/QuestionForm";
 import CenteredPolltabs from "./components/poll/CenteredPolltabs";
 import Poll from "./components/poll/Poll";
 import Share from "./components/pages/Share";
+import FillForm from "./components/fill/FillForm";
 
 class App extends Component {
   constructor(props) {
@@ -112,12 +113,12 @@ class App extends Component {
             <Route path="/share">
               <Share />
             </Route>
-            <Route path="/form">
+            <Route exact path="/form">
               <Centeredtabs />
               <QuestionForm />
             </Route>
-            <Route path="/poll">
-              <CenteredPolltabs />
+            <Route exact path="/poll">
+              <CenteredPolltabs label="POLL" />
               <Poll />
             </Route>
             <Route
@@ -129,6 +130,7 @@ class App extends Component {
                 />
               )}
             />
+            <Route path="/form/fill" component={FillForm}></Route>
             <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
           </Switch>
         </div>

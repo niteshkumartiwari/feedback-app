@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CenteredPolltabs() {
+function CenteredPolltabs(props) {
   const classes = useStyles();
   return (
     <Paper classes={classes.root}>
@@ -31,7 +31,7 @@ function CenteredPolltabs() {
         indicatorColor="primary"
         centered
       >
-        <Tab classes={classes.root} label="Poll"></Tab>
+        <Tab classes={classes.root} label={props.label}></Tab>
       </Tabs>
     </Paper>
   );

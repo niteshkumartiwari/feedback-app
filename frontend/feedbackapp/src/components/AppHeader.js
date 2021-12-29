@@ -29,7 +29,11 @@ class AppHeader extends Component {
               </div>
               <ul className={this.click ? "nav-menu active" : "nav-menu"}>
                 <li className="nav-item">
-                  <Link to="/home" className="nav-links" onClick={closeMobileMenu}>
+                  <Link
+                    to="/home"
+                    className="nav-links"
+                    onClick={closeMobileMenu}
+                  >
                     Home
                   </Link>
                 </li>
@@ -44,7 +48,7 @@ class AppHeader extends Component {
                 </li>
                 <li className="nav-item">
                   <Link
-                    to="/polls"
+                    to="/form/fill"
                     className="nav-links"
                     onClick={closeMobileMenu}
                   >
