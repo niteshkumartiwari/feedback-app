@@ -87,8 +87,8 @@ function QuestionForm(props) {
                         question.questionType === "text" ? (
                           <TextField
                             id="standard-textarea"
-                            label="Multiline Placeholder"
-                            placeholder="Placeholder"
+                            label="Text"
+                            placeholder="Answer here"
                             multiline
                             variant="standard"
                             required={question.required}
