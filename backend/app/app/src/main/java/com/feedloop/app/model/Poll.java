@@ -14,13 +14,14 @@ import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Getter
 @Setter
 @ToString
 
 @Document(collection = "Poll")
-public class Poll {
+public class Poll {//for auditing purpose else not needed!
     @Id
     private String id;
 
@@ -47,6 +48,13 @@ public class Poll {
     @NotNull
     private Question question;
 
+    @JsonIgnore
+    private List<Long> metadata= new CopyOnWriteArrayList<>();
+
+    public void updateMetadata(int option){
+        metadata.set(option, metadata.get(option)+1);
+    }
+
     public Poll(){
         /**
          * TODO: Generate these at DB end
@@ -54,5 +62,10 @@ public class Poll {
         this.createdAt= Date.from(Instant.now());
         this.documentName="Untitled Name";
         this.documentDescription="Untitled Description";
+
+        //Initialize arraylist
+        for(int i=0;i<4;i++){
+            metadata.add(0l);
+        }
     }
 }

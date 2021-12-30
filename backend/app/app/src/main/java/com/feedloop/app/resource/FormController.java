@@ -42,7 +42,7 @@ public class FormController {
     private ResponseEntity<SuccessFormSubmission> submitForm(@RequestBody FormSubmission submission){
         String id= formService.submitForm(submission);
 
-        SuccessFormSubmission successFormSubmission= new SuccessFormSubmission();
+        SuccessFormSubmission successFormSubmission= new SuccessFormSubmission("Done");
          return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(successFormSubmission);

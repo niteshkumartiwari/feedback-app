@@ -1,8 +1,11 @@
 package com.feedloop.app.resource;
 
 import com.feedloop.app.model.Form;
+import com.feedloop.app.model.FormSubmission;
 import com.feedloop.app.model.Poll;
+import com.feedloop.app.model.PollSubmission;
 import com.feedloop.app.response.form.CreateFormResponse;
+import com.feedloop.app.response.form.SuccessFormSubmission;
 import com.feedloop.app.security.CurrentUser;
 import com.feedloop.app.security.UserPrincipal;
 import com.feedloop.app.service.PollService;
@@ -35,5 +38,15 @@ public class PollResource {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(poll);
+    }
+
+    @PostMapping("/submit")
+    private ResponseEntity<SuccessFormSubmission> submitForm(@RequestBody PollSubmission submission){
+        pollService.submitPoll(submission);
+
+        SuccessFormSubmission successFormSubmission= new SuccessFormSubmission("Done");
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(successFormSubmission);
     }
 }

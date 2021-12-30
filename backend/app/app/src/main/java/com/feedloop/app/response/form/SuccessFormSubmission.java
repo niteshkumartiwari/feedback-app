@@ -7,4 +7,8 @@ import lombok.Setter;
 @Setter
 public class SuccessFormSubmission {
     private String msg;
+
+    public SuccessFormSubmission(String msg) {
+        this.msg = msg;
+    }
 }
