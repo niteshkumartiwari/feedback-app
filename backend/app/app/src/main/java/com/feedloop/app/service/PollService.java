@@ -6,6 +6,7 @@ import com.feedloop.app.model.Poll;
 import com.feedloop.app.model.PollSubmission;
 import com.feedloop.app.model.answer.RadioAnswer;
 import com.feedloop.app.repository.PollRepository;
+import com.feedloop.app.response.poll.DasboardResponse;
 import com.feedloop.app.security.UserPrincipal;
 import com.feedloop.app.util.Convertor;
 import org.bson.types.ObjectId;
@@ -50,6 +51,17 @@ public class PollService {
         }
 
         throw new ResourceNotFoundException("Poll",pollId,"does not exist");
+    }
+
+    public DasboardResponse getDashboard(String pollId){
+        Poll poll= getPollById(pollId);
+        DasboardResponse response= new DasboardResponse();
+        response.setQuestionText(poll.getDocumentName());
+        response.setQuestionDescription(poll.getDocumentDescription());
+        response.setOptions(poll.getQuestion().getOptions());
+        response.setOptionCounts(poll.getMetadata());
+
+        return response;
     }
 
     public void submitPoll(PollSubmission submission){

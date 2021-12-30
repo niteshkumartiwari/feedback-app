@@ -6,6 +6,7 @@ import com.feedloop.app.model.Poll;
 import com.feedloop.app.model.PollSubmission;
 import com.feedloop.app.response.form.CreateFormResponse;
 import com.feedloop.app.response.form.SuccessFormSubmission;
+import com.feedloop.app.response.poll.DasboardResponse;
 import com.feedloop.app.security.CurrentUser;
 import com.feedloop.app.security.UserPrincipal;
 import com.feedloop.app.service.PollService;
@@ -46,7 +47,16 @@ public class PollResource {
 
         SuccessFormSubmission successFormSubmission= new SuccessFormSubmission("Done");
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .status(HttpStatus.CREATED)
                 .body(successFormSubmission);
     }
+
+    @GetMapping("/view/{id}")
+    private ResponseEntity<DasboardResponse> getPollDashboard(@PathVariable String id){
+        DasboardResponse response= pollService.getDashboard(id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
+    }
+
 }
