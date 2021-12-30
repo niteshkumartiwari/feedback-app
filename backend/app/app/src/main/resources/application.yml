@@ -7,6 +7,7 @@ spring:
       host: localhost
       port: 27017
       database: feedbackApp
+      auto-index-creation: true
 
   security:
     oauth2:

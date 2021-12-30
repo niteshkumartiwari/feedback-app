@@ -20,7 +20,18 @@ function QuestionForm(props) {
   const [meta, setMeta] = useState();
   const [feedback, setFeedback] = useState();
   const [answers, setAnswers] = useState({});
+  const [checkedState, setCheckedState] = useState({});
   let id = uuidv4();
+
+  function handleOnChangeCheckBox(questionId, optionsId) {
+    let optionStatus = checkedState[questionId];
+    if (optionStatus === undefined) {
+      optionStatus = new Array(4).fill(false);
+    }
+    optionStatus[optionsId] = !optionStatus[optionsId];
+    checkedState[questionId] = optionStatus;
+    addAnswers(questionId, "checkbox");
+  }
 
   function questionsUI() {
     return questions.map((question, i) => (
@@ -38,7 +49,6 @@ function QuestionForm(props) {
             >
               {i + 1}. {question.questionText}
             </Typography>
-
             {question.options.map((op, j) => (
               <div key={j}>
                 <div style={{ display: "flex" }}>
@@ -107,9 +117,7 @@ function QuestionForm(props) {
                                 color="primary"
                                 style={{ marginRight: "3px" }}
                                 required={question.required}
-                                onClick={(event) => {
-                                  addAnswers(i, question.questionType, j);
-                                }}
+                                onChange={() => handleOnChangeCheckBox(i, j)}
                               />
                             }
                             label={
@@ -144,12 +152,16 @@ function QuestionForm(props) {
     let tmp = answers;
 
     if (questionType === "checkbox") {
-      if (tmp[questionId] === undefined) {
-        tmp[questionId] = [];
-      }
-      tmp[questionId].push(answer);
+      let checkedBool = checkedState[questionId];
+      let checkedAns = [];
+
+      checkedBool.map((item, i) => {
+        if (item) checkedAns.push(i);
+      });
+
+      tmp[questionId] = { type: questionType, answer: checkedAns };
     } else {
-      tmp[questionId] = answer;
+      tmp[questionId] = { type: questionType, answer: answer };
     }
 
     setAnswers(tmp);
