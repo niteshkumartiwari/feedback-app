@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
 import { unstable_createChainedFunction } from "@mui/material/node_modules/@mui/utils";
+import ThankYou from "./ThankYou";
 
 function QuestionForm(props) {
   const questions = props.form.questions;
@@ -168,7 +169,7 @@ function QuestionForm(props) {
   }
 
   async function commitToDB() {
-    const response = await doHttpRequest(SUBMIT_FORM, "POST", {
+    await doHttpRequest(SUBMIT_FORM, "POST", {
       form_id: props.form.id,
       client_id: id,
       user_info: {
@@ -182,7 +183,9 @@ function QuestionForm(props) {
     setSubmit(true);
   }
 
-  return (
+  return IsSubmit ? (
+    <ThankYou type="form" />
+  ) : (
     <div>
       <div className="question_form">
         <br></br>
