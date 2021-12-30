@@ -1,6 +1,7 @@
 package com.feedloop.app.resource;
 
 import com.feedloop.app.model.Form;
+import com.feedloop.app.model.FormSubmission;
 import com.feedloop.app.response.form.CreateFormResponse;
 import com.feedloop.app.security.CurrentUser;
 import com.feedloop.app.security.UserPrincipal;
@@ -34,5 +35,14 @@ public class FormController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(form);
+    }
+
+    @PostMapping("/submit")
+    private ResponseEntity<String> submitForm(@RequestBody FormSubmission submission){
+        String id= formService.submitForm(submission);
+
+         return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Done!");
     }
 }

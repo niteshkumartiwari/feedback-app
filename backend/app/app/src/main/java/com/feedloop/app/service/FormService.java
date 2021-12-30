@@ -3,7 +3,9 @@ package com.feedloop.app.service;
 import com.feedloop.app.exception.DuplicateRequestException;
 import com.feedloop.app.exception.ResourceNotFoundException;
 import com.feedloop.app.model.Form;
+import com.feedloop.app.model.FormSubmission;
 import com.feedloop.app.repository.FormRepository;
+import com.feedloop.app.repository.FormSubmissionRepository;
 import com.feedloop.app.security.UserPrincipal;
 import com.feedloop.app.util.Convertor;
 import org.bson.types.ObjectId;
@@ -20,6 +22,9 @@ public class FormService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private FormSubmissionRepository formSubmissionRepository;
 
     public String saveForm(UserPrincipal userPrincipal, Form form){
         if(formRepository.existsByClientId(form.getClientId())){
@@ -40,6 +45,12 @@ public class FormService {
         }
 
         throw new ResourceNotFoundException("Form",formId,"does not exist");
+    }
+
+    public String submitForm(FormSubmission formSubmission){
+        FormSubmission submission= formSubmissionRepository.save(formSubmission);
+
+        return submission.getId();
     }
 
     public List<Form> getByCreator(String userId){

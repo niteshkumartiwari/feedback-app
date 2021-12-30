@@ -157,6 +157,7 @@ function QuestionForm(props) {
 
   async function commitToDB() {
     const response = await doHttpRequest(SUBMIT_FORM, "POST", {
+      form_id: props.form.id,
       client_id: id,
       user_info: {
         userName: userName,
