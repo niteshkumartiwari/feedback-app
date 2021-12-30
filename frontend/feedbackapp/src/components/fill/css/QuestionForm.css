@@ -210,6 +210,13 @@
   transform: scale(2);
 }
 
+.user_footer {
+  background-color: white;
+  padding: 20px 2px;
+  flex-direction: column;
+  padding-left: 30px;
+}
+
 .saved_questions {
   background-color: white;
   width: 100%;

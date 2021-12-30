@@ -4,6 +4,9 @@ export const ACCESS_TOKEN = "accessToken";
 
 export const OAUTH2_REDIRECT_URI = "http://localhost:3000/oauth2/redirect";
 
+export const SUBMIT_FORM = "/form/submit";
+export const SUBMIT_POLL = "/poll/submit";
+
 export const FILL_FORM_PATH = "/form/fill";
 export const FILL_POLL_PATH = "/poll/fill";
 

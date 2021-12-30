@@ -4,11 +4,18 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import RadioGroup from "@mui/material/RadioGroup";
 import TextField from "@mui/material/TextField";
-import React from "react";
+import React, { useState } from "react";
+import { doHttpRequest } from "../apis/User";
+import { SUBMIT_FORM } from "../constants";
 import "./css/QuestionForm.css";
+import { v4 as uuidv4 } from "uuid";
+import InputLabel from "@mui/material/InputLabel";
+import Input from "@mui/material/Input";
 
 function QuestionForm(props) {
   const questions = props.form.questions;
+  const [IsSubmit, setSubmit] = useState(false);
+  let id = uuidv4();
 
   function questionsUI() {
     return questions.map((question, i) => (
@@ -115,6 +122,14 @@ function QuestionForm(props) {
     ));
   }
 
+  async function commitToDB() {
+    const response = await doHttpRequest(SUBMIT_FORM, "POST", {
+      client_id: id,
+    });
+
+    setSubmit(true);
+  }
+
   return (
     <div>
       <div className="question_form">
@@ -135,6 +150,18 @@ function QuestionForm(props) {
                 value={props.form.doc_desc}
                 disabled
               ></input>
+              <div className="user_info">
+                <Input
+                  id="component-simple"
+                  sx={{ paddingTop: "20px" }}
+                  placeholder="Name(Optional)"
+                />
+
+                <InputLabel sx={{ paddingTop: "20px" }}>
+                  For which interaction you want to provide feedback?
+                </InputLabel>
+                <Input id="component-simple" />
+              </div>
             </div>
           </div>
 
@@ -144,10 +171,18 @@ function QuestionForm(props) {
             ""
           )}
 
+          <div className="user_footer">
+            <InputLabel sx={{ paddingTop: "20px" }}>
+              Anything else you want to add?
+            </InputLabel>
+            <Input id="component-simple" />
+          </div>
+
           <div className="save_form">
             <Button
               variant="contained"
               color="primary"
+              onClick={commitToDB}
               style={{ fontSize: "14px" }}
             >
               Save
