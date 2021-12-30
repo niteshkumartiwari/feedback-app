@@ -1,30 +1,10 @@
-import { IconButton, Typography } from "@material-ui/core";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
+import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import Switch from "@material-ui/core/Switch";
-import { QuestionAnswerOutlined } from "@material-ui/icons";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import CloseIcon from "@material-ui/icons/Close";
-import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
-import FilterNoneIcon from "@material-ui/icons/FilterNone";
-import ShortTextIcon from "@material-ui/icons/ShortText";
-import SubjectIcon from "@material-ui/icons/Subject";
 import FormControl from "@mui/material/FormControl";
 import RadioGroup from "@mui/material/RadioGroup";
 import TextField from "@mui/material/TextField";
-import React, { useEffect, useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { BsTrash } from "react-icons/bs";
-import { v4 as uuidv4 } from "uuid";
-import { doHttpRequest } from "../apis/User";
-import { FILL_FORM_URL } from "../constants";
-import Share from "../pages/Share";
+import React from "react";
 import "./css/QuestionForm.css";
 
 function QuestionForm(props) {
