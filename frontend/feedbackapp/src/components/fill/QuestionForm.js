@@ -15,6 +15,9 @@ import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import FilterNoneIcon from "@material-ui/icons/FilterNone";
 import ShortTextIcon from "@material-ui/icons/ShortText";
 import SubjectIcon from "@material-ui/icons/Subject";
+import FormControl from "@mui/material/FormControl";
+import RadioGroup from "@mui/material/RadioGroup";
+import TextField from "@mui/material/TextField";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { BsTrash } from "react-icons/bs";
@@ -47,34 +50,82 @@ function QuestionForm(props) {
             {question.options.map((op, j) => (
               <div key={j}>
                 <div style={{ display: "flex" }}>
-                  <FormControlLabel
-                    style={{
-                      marginLeft: "5px",
-                      marginBottom: "5px",
-                    }}
-                    control={
-                      <input
-                        type={question.questionType}
-                        color="primary"
-                        style={{ marginRight: "3px" }}
-                        required={question.required}
-                      />
-                    }
-                    label={
-                      <Typography
-                        style={{
-                          fontFamily: " Roboto,Arial,sans-serif",
-                          fontSize: " 13px",
-                          fontWeight: "400",
-                          letterSpacing: ".2px",
-                          lineHeight: "20px",
-                          color: "#202124",
-                        }}
-                      >
-                        {question.options[j].optionText}
-                      </Typography>
-                    }
-                  />
+                  <FormControl component="fieldset">
+                    {question.questionType === "radio" ? (
+                      <RadioGroup name={i}>
+                        <FormControlLabel
+                          style={{
+                            marginLeft: "5px",
+                            marginBottom: "5px",
+                          }}
+                          control={
+                            <input
+                              name={i}
+                              type={question.questionType}
+                              color="primary"
+                              style={{ marginRight: "3px" }}
+                            />
+                          }
+                          label={
+                            <Typography
+                              style={{
+                                fontFamily: " Roboto,Arial,sans-serif",
+                                fontSize: " 13px",
+                                fontWeight: "400",
+                                letterSpacing: ".2px",
+                                lineHeight: "20px",
+                                color: "#202124",
+                              }}
+                            >
+                              {question.options[j].optionText}
+                            </Typography>
+                          }
+                        />
+                      </RadioGroup>
+                    ) : (
+                      [
+                        question.questionType === "text" ? (
+                          <TextField
+                            id="standard-textarea"
+                            label="Multiline Placeholder"
+                            placeholder="Placeholder"
+                            multiline
+                            variant="standard"
+                            required={question.required}
+                          />
+                        ) : (
+                          <FormControlLabel
+                            style={{
+                              marginLeft: "5px",
+                              marginBottom: "5px",
+                            }}
+                            control={
+                              <input
+                                type={question.questionType}
+                                color="primary"
+                                style={{ marginRight: "3px" }}
+                                required={question.required}
+                              />
+                            }
+                            label={
+                              <Typography
+                                style={{
+                                  fontFamily: " Roboto,Arial,sans-serif",
+                                  fontSize: " 13px",
+                                  fontWeight: "400",
+                                  letterSpacing: ".2px",
+                                  lineHeight: "20px",
+                                  color: "#202124",
+                                }}
+                              >
+                                {question.options[j].optionText}
+                              </Typography>
+                            }
+                          />
+                        ),
+                      ]
+                    )}
+                  </FormControl>
                 </div>
               </div>
             ))}
