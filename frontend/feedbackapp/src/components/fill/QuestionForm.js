@@ -11,10 +11,15 @@ import "./css/QuestionForm.css";
 import { v4 as uuidv4 } from "uuid";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
+import { unstable_createChainedFunction } from "@mui/material/node_modules/@mui/utils";
 
 function QuestionForm(props) {
   const questions = props.form.questions;
   const [IsSubmit, setSubmit] = useState(false);
+  const [userName, setUserName] = useState();
+  const [meta, setMeta] = useState();
+  const [feedback, setFeedback] = useState();
+  const [answers, setAnswers] = useState({});
   let id = uuidv4();
 
   function questionsUI() {
@@ -51,6 +56,9 @@ function QuestionForm(props) {
                               type={question.questionType}
                               color="primary"
                               style={{ marginRight: "3px" }}
+                              onClick={() => {
+                                addAnswers(i, question.questionType, j);
+                              }}
                             />
                           }
                           label={
@@ -79,6 +87,13 @@ function QuestionForm(props) {
                             multiline
                             variant="standard"
                             required={question.required}
+                            onChange={(event) => {
+                              addAnswers(
+                                i,
+                                question.questionType,
+                                event.target.value
+                              );
+                            }}
                           />
                         ) : (
                           <FormControlLabel
@@ -92,6 +107,9 @@ function QuestionForm(props) {
                                 color="primary"
                                 style={{ marginRight: "3px" }}
                                 required={question.required}
+                                onClick={(event) => {
+                                  addAnswers(i, question.questionType, j);
+                                }}
                               />
                             }
                             label={
@@ -122,9 +140,30 @@ function QuestionForm(props) {
     ));
   }
 
+  function addAnswers(questionId, questionType, answer) {
+    let tmp = answers;
+
+    if (questionType === "checkbox") {
+      if (tmp[questionId] === undefined) {
+        tmp[questionId] = [];
+      }
+      tmp[questionId].push(answer);
+    } else {
+      tmp[questionId] = answer;
+    }
+
+    setAnswers(tmp);
+  }
+
   async function commitToDB() {
     const response = await doHttpRequest(SUBMIT_FORM, "POST", {
       client_id: id,
+      user_info: {
+        userName: userName,
+        meta: meta,
+      },
+      answers: answers,
+      feedback: feedback,
     });
 
     setSubmit(true);
@@ -155,12 +194,20 @@ function QuestionForm(props) {
                   id="component-simple"
                   sx={{ paddingTop: "20px" }}
                   placeholder="Name(Optional)"
+                  onChange={(event) => {
+                    setUserName(event.target.value);
+                  }}
                 />
 
                 <InputLabel sx={{ paddingTop: "20px" }}>
                   For which interaction you want to provide feedback?
                 </InputLabel>
-                <Input id="component-simple" />
+                <Input
+                  id="component-simple"
+                  onChange={(event) => {
+                    setMeta(event.target.value);
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -175,7 +222,12 @@ function QuestionForm(props) {
             <InputLabel sx={{ paddingTop: "20px" }}>
               Anything else you want to add?
             </InputLabel>
-            <Input id="component-simple" />
+            <Input
+              id="component-simple"
+              onChange={(event) => {
+                setFeedback(event.target.value);
+              }}
+            />
           </div>
 
           <div className="save_form">
@@ -185,7 +237,7 @@ function QuestionForm(props) {
               onClick={commitToDB}
               style={{ fontSize: "14px" }}
             >
-              Save
+              Submit
             </Button>
           </div>
         </div>
