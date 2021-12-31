@@ -6,6 +6,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./css/Post.css";
+import { Link } from "react-router-dom";
+import { VIEW_FORM_SUBMISSION } from "../constants";
 
 class Post extends Component {
   constructor(props) {
@@ -59,7 +61,13 @@ class Post extends Component {
           </CardContent>
           <CardActions>
             <Button size="small">Share</Button>
-            <Button size="small">View</Button>
+            <Button
+              size="small"
+              component={Link}
+              to={VIEW_FORM_SUBMISSION + "/" + this.props.post.submissionId}
+            >
+              View
+            </Button>
           </CardActions>
         </Card>
         {/* <span className="content">{this.props.value.content}</span> */}

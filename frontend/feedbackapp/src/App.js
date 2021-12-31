@@ -21,6 +21,7 @@ import FillForm from "./components/fill/FillForm";
 import ThankYou from "./components/fill/ThankYou";
 import FillPoll from "./components/fill/FillPoll";
 import PollDasboard from "./components/poll/PollDasboard";
+import ViewForm from "./components/view/ViewForm";
 
 class App extends Component {
   constructor(props) {
@@ -124,6 +125,7 @@ class App extends Component {
               <CenteredPolltabs label="POLL" />
               <Poll />
             </Route>
+            <Route path="/form/submission" component={ViewForm}></Route>
             <Route
               path="/sign-up"
               render={(props) => (

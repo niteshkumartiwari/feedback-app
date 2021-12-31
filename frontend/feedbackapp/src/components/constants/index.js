@@ -12,6 +12,8 @@ export const FILL_POLL_PATH = "/poll/fill";
 
 export const VIEW_POLL_PATH = "/poll/view";
 
+export const VIEW_FORM_SUBMISSION = "/form/submission";
+
 export const FILL_FORM_URL = API_FRONTEND_URL + "/form/fill";
 export const FILL_POLL_URL = API_FRONTEND_URL + "/poll/fill";
 
