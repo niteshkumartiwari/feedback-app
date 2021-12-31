@@ -48,7 +48,7 @@ class AppHeader extends Component {
                 </li>
                 <li className="nav-item">
                   <Link
-                    to="/form/fill"
+                    to="/poll/view/61ce02620d4d43026b597686"
                     className="nav-links"
                     onClick={closeMobileMenu}
                   >

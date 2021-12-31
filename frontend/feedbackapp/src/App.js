@@ -20,6 +20,7 @@ import Share from "./components/pages/Share";
 import FillForm from "./components/fill/FillForm";
 import ThankYou from "./components/fill/ThankYou";
 import FillPoll from "./components/fill/FillPoll";
+import PollDasboard from "./components/poll/PollDasboard";
 
 class App extends Component {
   constructor(props) {
@@ -134,6 +135,9 @@ class App extends Component {
             />
             <Route path="/form/fill" component={FillForm}></Route>
             <Route path="/poll/fill" component={FillPoll}></Route>
+
+            <Route path="/poll/view" component={PollDasboard}></Route>
+
             <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
           </Switch>
         </div>

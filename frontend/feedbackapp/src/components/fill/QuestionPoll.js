@@ -6,7 +6,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 import { doHttpRequest } from "../apis/User";
-import { SUBMIT_FORM } from "../constants";
+import { SUBMIT_POLL } from "../constants";
 import { v4 as uuidv4 } from "uuid";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
@@ -92,7 +92,7 @@ function QuestionPoll(props) {
   }
 
   async function commitToDB() {
-    await doHttpRequest(SUBMIT_FORM, "POST", {
+    await doHttpRequest(SUBMIT_POLL, "POST", {
       form_id: props.form.id,
       client_id: id,
       user_info: {

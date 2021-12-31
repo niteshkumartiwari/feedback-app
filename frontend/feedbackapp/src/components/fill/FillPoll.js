@@ -32,7 +32,7 @@ export class FillPoll extends Component {
   render() {
     return (
       <div>
-        <CenteredPolltabs label="Form" />
+        <CenteredPolltabs label="Poll" />
         {!!this.state.form ? <QuestionPoll form={this.state.form} /> : ""}
       </div>
     );

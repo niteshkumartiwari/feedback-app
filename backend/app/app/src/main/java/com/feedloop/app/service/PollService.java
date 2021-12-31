@@ -2,6 +2,7 @@ package com.feedloop.app.service;
 
 import com.feedloop.app.exception.DuplicateRequestException;
 import com.feedloop.app.exception.ResourceNotFoundException;
+import com.feedloop.app.model.Option;
 import com.feedloop.app.model.Poll;
 import com.feedloop.app.model.PollSubmission;
 import com.feedloop.app.model.answer.RadioAnswer;
@@ -17,6 +18,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,7 +60,9 @@ public class PollService {
         DasboardResponse response= new DasboardResponse();
         response.setQuestionText(poll.getDocumentName());
         response.setQuestionDescription(poll.getDocumentDescription());
-        response.setOptions(poll.getQuestion().getOptions());
+        List<String> options= new ArrayList<>();
+        for(Option option : poll.getQuestion().getOptions()) options.add(option.getOptionText());
+        response.setOptions(options);
         response.setOptionCounts(poll.getMetadata());
 
         return response;
