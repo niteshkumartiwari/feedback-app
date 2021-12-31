@@ -8,6 +8,10 @@ import Typography from "@mui/material/Typography";
 import "./css/Post.css";
 
 class Post extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="post">
@@ -32,7 +36,7 @@ class Post extends Component {
                 fontFamily: "sans-serif",
               }}
             >
-              Form-Name
+              {this.props.post.formName}
             </Typography>
             <Typography
               variant="body2"
@@ -41,7 +45,7 @@ class Post extends Component {
                 fontFamily: "sans-serif",
               }}
             >
-              Form Discription
+              {this.props.post.formDescription}
             </Typography>
             <Typography
               variant="body2"
@@ -50,7 +54,7 @@ class Post extends Component {
                 fontFamily: "sans-serif",
               }}
             >
-              Mark has given a feedback
+              {this.props.post.submittedBy} has given a feedback
             </Typography>
           </CardContent>
           <CardActions>

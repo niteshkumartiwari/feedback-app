@@ -18,5 +18,7 @@ export const FILL_POLL_URL = API_FRONTEND_URL + "/poll/fill";
 export const GET_USER_FORMS = "/user/forms";
 export const GET_USER_POLLS = "/user/polls";
 
+export const GET_USER_FEED = "/user/feed";
+
 export const GOOGLE_AUTH_URL =
   API_BASE_URL + "/oauth2/authorize/google?redirect_uri=" + OAUTH2_REDIRECT_URI;

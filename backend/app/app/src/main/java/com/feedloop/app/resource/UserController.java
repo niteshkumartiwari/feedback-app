@@ -2,6 +2,7 @@ package com.feedloop.app.resource;
 
 import com.feedloop.app.model.FormSubmission;
 import com.feedloop.app.model.User;
+import com.feedloop.app.response.form.FeedPostResponse;
 import com.feedloop.app.response.form.GetAllFormsResponse;
 import com.feedloop.app.response.poll.GetAllPollsResponse;
 import com.feedloop.app.security.CurrentUser;
@@ -60,9 +61,9 @@ public class UserController {
     }
 
     @GetMapping(path = "/feed" , params = {"page","size"})
-    public ResponseEntity<Page<FormSubmission>> getUserFeed(@CurrentUser UserPrincipal userPrincipal,
-                                                            @RequestParam("page") int page,
-                                                            @RequestParam("size") int size){
+    public ResponseEntity<FeedPostResponse> getUserFeed(@CurrentUser UserPrincipal userPrincipal,
+                                                        @RequestParam("page") int page,
+                                                        @RequestParam("size") int size){
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(userService.getUserFeed(userPrincipal.getId(), page, size));

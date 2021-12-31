@@ -13,4 +13,8 @@ public class UserInfo {
     @JsonProperty("userName")
     private String name;
     private String meta;
+
+    public UserInfo(){
+        this.name= "Anonymous";
+    }
 }
