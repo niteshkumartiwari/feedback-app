@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { alignProperty } from "@mui/material/styles/cssUtils";
 import Link from "@mui/material/Link";
-import { FILL_POLL_URL, FILL_FORM_URL } from "../constants";
+import { FILL_POLL_URL, FILL_FORM_URL, VIEW_POLL_PATH } from "../constants";
 
 class ProfileFeed extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ class ProfileFeed extends Component {
             <Paper sx={{ height: 500, width: 300 }} elevation={24}>
               {this.props.polls.map((item, i) => (
                 <div className="list_form">
-                  <Link href={FILL_POLL_URL + "/" + item.pollId}>
+                  <Link href={VIEW_POLL_PATH + "/" + item.pollId}>
                     {item.pollName}
                   </Link>
                 </div>

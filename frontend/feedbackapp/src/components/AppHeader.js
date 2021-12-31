@@ -48,11 +48,11 @@ class AppHeader extends Component {
                 </li>
                 <li className="nav-item">
                   <Link
-                    to="/poll/view/61ce02620d4d43026b597686"
+                    to="/analytics"
                     className="nav-links"
                     onClick={closeMobileMenu}
                   >
-                    Active Polls
+                    Analytics
                   </Link>
                 </li>
               </ul>
