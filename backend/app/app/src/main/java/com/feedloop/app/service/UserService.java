@@ -89,6 +89,7 @@ public class UserService {
             FeedPost feedPost= new FeedPost();
             feedPost.setFormName(form.getDocumentName());
             feedPost.setFormDescription(form.getDocumentDescription());
+            feedPost.setSubmissionId(submission.getId());
             if(submission.getUserInfo().getName()!=null && submission.getUserInfo().getName()!="") {
                 feedPost.setSubmittedBy(submission.getUserInfo().getName());
             }

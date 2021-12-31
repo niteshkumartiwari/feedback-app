@@ -4,6 +4,7 @@ import com.feedloop.app.model.Form;
 import com.feedloop.app.model.FormSubmission;
 import com.feedloop.app.response.form.CreateFormResponse;
 import com.feedloop.app.response.form.SuccessFormSubmission;
+import com.feedloop.app.response.form.ViewSubmissionResponse;
 import com.feedloop.app.security.CurrentUser;
 import com.feedloop.app.security.UserPrincipal;
 import com.feedloop.app.service.FormService;
@@ -46,5 +47,12 @@ public class FormController {
          return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(successFormSubmission);
+    }
+
+    @GetMapping("/submission/{id}")
+    private ResponseEntity<ViewSubmissionResponse> viewFormSubmission(@PathVariable String id){
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(formService.viewFormSubmission(id));
     }
 }

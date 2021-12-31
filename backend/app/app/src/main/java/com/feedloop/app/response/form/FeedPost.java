@@ -9,6 +9,7 @@ public class FeedPost {
     private String formName;
     private String formDescription;
     private String submittedBy;
+    private String submissionId;
 
     public FeedPost(){
         this.submittedBy="Anonymous";

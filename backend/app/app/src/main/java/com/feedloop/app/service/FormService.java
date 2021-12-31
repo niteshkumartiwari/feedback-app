@@ -6,6 +6,7 @@ import com.feedloop.app.model.Form;
 import com.feedloop.app.model.FormSubmission;
 import com.feedloop.app.repository.FormRepository;
 import com.feedloop.app.repository.FormSubmissionRepository;
+import com.feedloop.app.response.form.ViewSubmissionResponse;
 import com.feedloop.app.security.UserPrincipal;
 import com.feedloop.app.util.Convertor;
 import org.bson.types.ObjectId;
@@ -45,6 +46,23 @@ public class FormService {
         }
 
         throw new ResourceNotFoundException("Form",formId,"does not exist");
+    }
+
+    public ViewSubmissionResponse viewFormSubmission(String submissionId){
+        FormSubmission submission= formSubmissionRepository
+                                        .findById(new ObjectId(submissionId))
+                                        .orElseThrow(()->new ResourceNotFoundException("submission", "submissionId",submissionId));
+
+        Form form= getFormById(submission.getFormId());
+
+        ViewSubmissionResponse response= new ViewSubmissionResponse();
+        response.setAnswers(submission.getAnswers());
+        response.setFeedback(submission.getFeedback());
+        response.setForm(form);
+        response.setSubmittedOn(submission.getSubmittedOn());
+        response.setUserInfo(submission.getUserInfo());
+
+        return response;
     }
 
     public String submitForm(FormSubmission formSubmission){
