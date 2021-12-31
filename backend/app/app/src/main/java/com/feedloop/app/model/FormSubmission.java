@@ -34,6 +34,9 @@ public class FormSubmission {
     @Indexed(unique=true)
     private String clientId;
 
+    @JsonIgnore
+    private String createdBy;
+
     private Map<Integer, AnswerType> answers;
 
     private String feedback;

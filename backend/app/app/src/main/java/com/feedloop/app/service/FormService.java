@@ -48,6 +48,7 @@ public class FormService {
     }
 
     public String submitForm(FormSubmission formSubmission){
+        formSubmission.setCreatedBy(getFormById(formSubmission.getFormId()).getCreatedBy());
         FormSubmission submission= formSubmissionRepository.save(formSubmission);
 
         return submission.getId();
