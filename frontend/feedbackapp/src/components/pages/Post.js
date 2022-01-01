@@ -7,11 +7,20 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./css/Post.css";
 import { Link } from "react-router-dom";
-import { VIEW_FORM_SUBMISSION } from "../constants";
+import { API_FRONTEND_URL, VIEW_FORM_SUBMISSION } from "../constants";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import toast from "react-simple-toasts";
 
 class Post extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      open: false,
+    };
   }
 
   render() {
@@ -60,7 +69,6 @@ class Post extends Component {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Share</Button>
             <Button
               size="small"
               component={Link}
@@ -68,6 +76,45 @@ class Post extends Component {
             >
               View
             </Button>
+            <Button size="small" onClick={() => this.setState({ open: true })}>
+              Share
+            </Button>
+            <Dialog
+              // fullScreen={fullScreen}
+              open={this.state.open}
+              // onClose={handleClose}
+              aria-labelledby="responsive-dialog-title"
+            >
+              <DialogTitle id="responsive-dialog-title">
+                {"Use Google's location service?"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  Share it publically :{" "}
+                  {API_FRONTEND_URL +
+                    VIEW_FORM_SUBMISSION +
+                    "/" +
+                    this.props.post.submissionId}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  autoFocus
+                  onClick={() => {
+                    this.setState({ open: false });
+                    navigator.clipboard.writeText(
+                      API_FRONTEND_URL +
+                        VIEW_FORM_SUBMISSION +
+                        "/" +
+                        this.props.post.submissionId
+                    );
+                    toast("Copied Link to Clipboard!");
+                  }}
+                >
+                  Copy Link
+                </Button>
+              </DialogActions>
+            </Dialog>
           </CardActions>
         </Card>
         {/* <span className="content">{this.props.value.content}</span> */}
