@@ -15,8 +15,10 @@ function BuildDasboard(props) {
   return (
     <div className="container">
       <div className="header">
-        <h1>{props.poll.questionText}</h1>
-        <h3>{props.poll.questionDescription}</h3>
+        <h1>{props.poll.pollTitle}</h1>
+        <h5>{props.poll.pollDescription}</h5>
+        <br></br>
+        <h3>{props.poll.questionText}</h3>
       </div>
       <div className="bar_graph">
         <BarChart

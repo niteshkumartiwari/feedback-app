@@ -31,8 +31,9 @@ class PollDasboard extends Component {
     });
 
     let newPoll = {
+      pollTitle: poll.pollTitle,
+      pollDescription: poll.pollDescription,
       questionText: poll.questionText,
-      questionDescription: poll.questionDescription,
       data: data,
     };
     return newPoll;

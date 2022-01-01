@@ -58,8 +58,9 @@ public class PollService {
     public DasboardResponse getDashboard(String pollId){
         Poll poll= getPollById(pollId);
         DasboardResponse response= new DasboardResponse();
-        response.setQuestionText(poll.getDocumentName());
-        response.setQuestionDescription(poll.getDocumentDescription());
+        response.setPollTitle(poll.getDocumentName());
+        response.setPollDescription(poll.getDocumentDescription());
+        response.setQuestionText(poll.getQuestion().getQuestionText());
         List<String> options= new ArrayList<>();
         for(Option option : poll.getQuestion().getOptions()) options.add(option.getOptionText());
         response.setOptions(options);
