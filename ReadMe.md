@@ -16,7 +16,7 @@ We mostly wanted target this for
 
 ***(If anyone wants to add analytics functionality I be very happy to accept that PR)***
 
-[BrainStorming-Doc] [1]
+[BrainStorming-Doc] [link]
 
 ## Demo
 
@@ -38,4 +38,4 @@ We mostly wanted target this for
 ![PollView](img/PollView.jpg)
 ![PollView2](img/PollView2.jpg)
 
-[1]: https://docs.google.com/document/d/1G9zst4AgOYR13vBQNpGcKgE_avX-yEcpXnEIidzDHQ0/edit?usp=sharing
+[link]: https://docs.google.com/document/d/1G9zst4AgOYR13vBQNpGcKgE_avX-yEcpXnEIidzDHQ0/edit?usp=sharing
