@@ -8,3 +8,5 @@
 4. Update google oauth2-keys in `application.yml`
 
 5. Run `AppApplication.java` to start the server
+
+[Postman test Collection](https://www.getpostman.com/collections/1a7b039265a3f721b6de)
