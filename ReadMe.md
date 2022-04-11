@@ -9,14 +9,16 @@ We mostly wanted target this for
 3. In person meetings
 4. Phone calls
 
+***(If anyone wants to add analytics functionality I be very happy to accept that PR)***
+
+[BrainStorming-Doc] [link]
+
+## Tasks
+
 - [x] Creating Poll/Form 
 - [X] Editing/Viewing
 - [X] Auth2 with Google
 - [ ] Analytics (ML)
-
-***(If anyone wants to add analytics functionality I be very happy to accept that PR)***
-
-[BrainStorming-Doc] [link]
 
 ## Setup
 Navigate to respective backend/frontend directory and check ReadMe.md to bootstrap the services.
