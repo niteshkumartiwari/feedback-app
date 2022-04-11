@@ -18,6 +18,9 @@ We mostly wanted target this for
 
 [BrainStorming-Doc] [link]
 
+## Setup
+Navigate to respective backend/frontend directory and check ReadMe.md to bootstrap the services.
+
 ## Demo
 
 ### 1. Landing Page 
